@@ -16,24 +16,16 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import UserLoginView, UserRegistrationView , view_all_users 
+from .views import UserListCreateAPIView, UserDetailAPIView, UserTypeListCreateAPIView, UserTypeDetailAPIView
+from .views import SystemModuleListCreateAPIView, SystemModuleDetailAPIView, UserTypeModuleMappingListCreateAPIView, UserTypeModuleMappingDetailAPIView
 
 urlpatterns = [
-    path('register/', UserRegistrationView.as_view(), name='user-register'),
-    path('login/', UserLoginView.as_view(), name='user-login'),
-    path('view', view_all_users, name='view_users'),
-    # path('update_user/<int:user_id>/', update_user, name='update_user'),
-    # path('delete_user/<int:user_id>/', delete_user, name='delete_user'),
+    path('users/', UserListCreateAPIView.as_view(), name='user-list-create'),
+    path('users/<int:user_id>/', UserDetailAPIView.as_view(), name='user-detail'),
+    path('usertypes/', UserTypeListCreateAPIView.as_view(), name='user-type-list-create'),
+    path('usertypes/<int:user_type_id>/', UserTypeDetailAPIView.as_view(), name='user-type-detail'),
+    path('systemmodules/', SystemModuleListCreateAPIView.as_view(), name='system-module-list-create'),
+    path('systemmodules/<int:system_module_id>/', SystemModuleDetailAPIView.as_view(), name='system-module-detail'),
+    path('usertype-module-mappings/', UserTypeModuleMappingListCreateAPIView.as_view(), name='user-type-module-mapping-list-create'),
+    path('usertype-module-mappings/<int:mapping_id>/', UserTypeModuleMappingDetailAPIView.as_view(), name='user-type-module-mapping-detail'),
 ]
-
-
-# {
-#     "email": "testuser@example.com",
-#     "username": "testuser",
-#     "password": "securepassword123",
-#     "user_type": "student",
-#     "fullname": "Test User",
-#     "qualification": "B.Tech",
-#     "passing_year": 2025,
-#     "address": "123 Test Street"
-# }
